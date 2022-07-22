@@ -24,7 +24,6 @@ const DEFAULT_LOGIN_DATA = {
 function LoginForm({ initialFormData=DEFAULT_LOGIN_DATA, handleSave }) {
   // console.log("LoginForm");
   const [formData, setFormData] = useState(initialFormData);
-  const [error, setError] = useState(false);
 
   /** Update form input. */
   function handleChange(evt) {
@@ -38,13 +37,7 @@ function LoginForm({ initialFormData=DEFAULT_LOGIN_DATA, handleSave }) {
   /** Call parent function and clear form. */
   function handleSubmit(evt) {
     evt.preventDefault();
-    try {
-      console.log("kjahsdskjahdkj");
-      handleSave(formData);
-    } catch (err) {
-      console.log("caught?");
-      setError("Invalid username/password");
-    }
+    handleSave(formData);
     setFormData(initialFormData);
   }
   //TODO: check if password input is type password or not
@@ -62,8 +55,6 @@ function LoginForm({ initialFormData=DEFAULT_LOGIN_DATA, handleSave }) {
           placeholder={p}
           onChange={handleChange}
         />)}
-      {error &&
-        <p>{error}</p>}
       <button>
         Submit
       </button>
